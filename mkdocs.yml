@@ -23,9 +23,13 @@ theme:
 nav:
   - Home: index.md
   - Setting up a Meshcore Companion: setting-up-meshcore-companion.md
+  - What Antenna should I use?: antenna.md
   - Meshcore Repeater Setup: meshcore-repeater-setup.md
 
+
 extra:
+  
+
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/LouisianaMeshCommunity
