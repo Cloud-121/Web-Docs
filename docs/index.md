@@ -2,6 +2,8 @@
 
 ## Welcome to the Louisiana Mesh Community Docs: a curated collection of resources for the Louisiana Mesh community and beyond.
 
+### How to switch to our Meshcore Frequency [Settings](freq-settings.md).
+
 ### Shopping for your first Meshtastic/Meshcore device, or perhaps looking to pick up another? View our recommended devices [here](devicerecs.md).
 
 ### To learn which antenna you should use for your setup, view our antenna guide [here](antenna.md).
