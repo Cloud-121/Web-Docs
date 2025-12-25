@@ -3,7 +3,7 @@
 ## Welcome to the Louisiana Mesh Community Docs: a curated collection of resources for the Louisiana Mesh community and beyond.
 ---
 
-### *Join our Discord for real time chats and our monday weekly voice meet [here](https://discord.louisianamesh.org)*
+### *Join our Discord for real time chats and our monday weekly voice meeting [here](https://discord.louisianamesh.org)*.
 
 ---
 
