@@ -1,7 +1,20 @@
 # What Device Should I Buy?
 
-## Best Daily Carry (EDC)
+---
+
+## Personal Node Recommendations
+
+### Best Daily Carry (EDC)
 If you are looking for a reliable, rugged, and water-resistant node with a 5-day battery life, the **T1000-E** from Seeed Studio is a great choice. You can purchase it directly from [Seeed Studio](https://www.seeedstudio.com/SenseCAP-Card-Tracker-T1000-E-for-Meshtastic-p-5913.html?qid=VVLLAQ_f83zcvqx_1766178728865) or on [Amazon](https://amzn.to/3KUMsXc).
+
+### Our Recommendation List:
+
+| Board | Strength | Trade-off | Buy-from |
+| :--- | :--- | :--- | :--- |
+| **T1000-E** | Durability & Battery Long Life | No display, Limited Expandbility | [Seeed Studio](https://www.seeedstudio.com/SenseCAP-Card-Tracker-T1000-E-for-Meshtastic-p-5913.html?qid=VVLLAQ_f83zcvqx_1766178728865),  [Amazon](https://amzn.to/3KUMsXc)
+| **T-Deck-Plus** | Built-in Keyboard & Large Display | Battery Life, Large Formfactor, High Price | [Lilygo](https://lilygo.cc/products/t-deck-plus-meshtastic?variant=51953085382837),  [Amazon](https://amzn.to/4pQMWwx)
+| **Wio Tracker L1 Pro** | Durability, Joystick Keyboard (With Ranger Firmware), Battery Life | Larger Then T1000-E Without Water Resistance | [Seeed Studio](https://www.seeedstudio.com/Wio-Tracker-L1-Pro-p-6454.html),  [Amazon](https://amzn.to/48UAKF7)
+| **MeshPocket** | Works As A Magsafe Battery Bank & E-Ink Display | Quite Fragile | [Heltec Automation](https://heltec.org/project/meshpocket/),  [Amazon](https://amzn.to/3YIxqqz)
 
 ---
 
@@ -12,16 +25,18 @@ If you prefer a "plug-and-play" solution that is weather-ready out of the box, t
 
 The **P1** is $35 cheaper as it does not include batteries or GPS; you will need to supply four 18650 batteries yourself. By comparison, the **P1 Pro** includes everything you need to get started, including an integrated GPS module.
 
-### Solar Nodes to Build
-For those DIYing their own solar enclosures, these two boards are the best in class:
+### Repeater Nodes to Build
+For those DIYing their own repeater or solar enclosures, here are some boards we recommend.
 
-* **RAK WisMesh:** Highly recommended for its power efficiency. Buy from: [Rak Wireless](https://store.rokland.com/collections/rakwireless-products/products/rak-wireless-wisblock-meshtastic-starter-kit), [Amazon](https://amzn.to/3MQtcun)
-* **Heltec V4:** A more powerful alternative, for a slightly cheaper price. Buy from: [Heltec Automation](https://heltec.org/project/wifi-lora-32-v4/), [Amazon](https://amzn.to/48YZfQb)
+#### Top Picks:
+* **RAK WisMesh:** Highly recommended for its power efficiency and small size.
+* **Heltec V4:** A more powerful alternative, for a slightly cheaper price.
 
-| Board | Strength | Trade-off |
-| :--- | :--- | :--- |
-| **RAK WisMesh** | Power efficiency | Slightly lower TX power |
-| **Heltec V4** | Higher transmit power | Higher power consumption |
+| Board | Strength | Trade-off | Buy-from |
+| :--- | :--- | :--- | :--- |
+| **RAK WisMesh** | Power efficiency | Slightly lower TX power | [Rak Wireless](https://store.rokland.com/collections/rakwireless-products/products/rak-wireless-wisblock-meshtastic-starter-kit),  [Amazon](https://amzn.to/3MQtcun)
+| **Heltec V4** | Higher transmit power | Higher power consumption | [Heltec Automation](https://heltec.org/project/wifi-lora-32-v4/),  [Amazon](https://amzn.to/48YZfQb)
+| **Xio-SX1262** | Ultra-Small formfactor | poor price to preformance | [Seeedstudio](https://www.seeedstudio.com/Wio-SX1262-with-XIAO-ESP32S3-p-5982.html),  [Amazon](https://amzn.to/49t6qBy)
 
 
 
