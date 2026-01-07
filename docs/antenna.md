@@ -29,6 +29,9 @@
 
 ## Repeater Antenna Recommendedations
 
+### "Eifgur" (Appears to be a Rokland knokeoff): 44$
+[Almost identical preformance to the Rokland for 10$ less and free shipping with prime.](https://amzn.to/49swpIc)
+
 ### ALFA Knokeoff: 12$
 [Simlar prefomance to the ALFA for 5$ less, Good for hanging/less then legal nodes](https://amzn.to/3KUJP7M)
 
