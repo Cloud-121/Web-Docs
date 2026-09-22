@@ -16,7 +16,7 @@
       script.integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
       script.crossOrigin = "anonymous";
       script.onload = () => resolve(window.L);
-      script.onerror = () => reject(new Error("The map library could not load. You can still enter coordinates below."));
+      script.onerror = () => reject(new Error("The map library could not load."));
       document.head.append(script);
     });
     return leafletPromise;
@@ -93,21 +93,19 @@
         return;
       }
       say("Configuration for " + (config.area ? config.area.name + " at " : "") + location + ".");
-      result.append(element("h4", "Review your regions"));
+      result.append(element("h4", "Regions in area:"));
       result.append(element("p", "Allow: " + config.allowed.join(", ")));
-      result.append(element("p", "These commands allow the listed regions. They do not block or remove any existing regions."));
       if (!config.allowed.some(code => code.endsWith("-mm"))) {
-        result.append(element("p", "No MeshMapper code is known for this location; only the matching API region codes are included."));
+        result.append(element("p", "No MeshMapper code is known for this location."));
       }
       const regionNames = matches.filter(region => config.allowed.includes(region.id))
         .map(region => `${region.name} (${region.id})`).join("; ");
-      result.append(element("p", "Matching map regions: " + regionNames));
       result.append(element("h4", config.commands.length === 2 ? "Set your regions, then save" : "Set your regions in batches, then save"));
-      result.append(element("p", "Log into your repeater as admin in the MeshCore app and open Command Line. Run the region def command, review the returned region tree, then run region save. Each listed region is flood-allowed and placed under the global root; |* separates regions at that root. Your firmware must support region def."));
+      result.append(element("p", "Log into your repeater and open Command Line or Terminal."));
       if (config.commands.length > 2) {
         result.append(element("p", "This list exceeds one command’s length limit, so it is split into batches. Run every region def command in order before saving."));
       }
-      result.append(element("p", "Wait for each reply. If any command returns an error, stop before saving and resolve it; a failed command may have applied only part of the list. Older-firmware instructions are below the tool."));
+      result.append(element("p", "Wait for each reply. If any command returns an error, stop before saving and resolve it; a failed command may have applied only part of the list."));
       result.append(commandList(config.commands));
       const verification = element("details");
       verification.append(element("summary", "Verify the saved settings"));
@@ -120,8 +118,10 @@
       try {
         matches = RegionCore.matchesAt(data, lng, lat);
         selectedPoint = {lat, lng};
-        form.elements.latitude.value = lat.toFixed(6);
-        form.elements.longitude.value = lng.toFixed(6);
+        if (form) {
+          form.elements.latitude.value = lat.toFixed(6);
+          form.elements.longitude.value = lng.toFixed(6);
+        }
         if (map) {
           if (!marker) marker = L.circleMarker([lat, lng], {radius: 7, color: "#111", fillColor: "#fff", fillOpacity: 1}).addTo(map);
           else marker.setLatLng([lat, lng]);
@@ -136,22 +136,23 @@
         say(error.message);
       }
     }
-    form.addEventListener("submit", event => {
-      event.preventDefault();
-      const lat = Number(form.elements.latitude.value);
-      const lng = Number(form.elements.longitude.value);
-      selectPoint(lat, lng);
-      if (map && Number.isFinite(lat) && Number.isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180) map.panTo([lat, lng]);
-    });
+    if (form) {
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+        const lat = Number(form.elements.latitude.value);
+        const lng = Number(form.elements.longitude.value);
+        selectPoint(lat, lng);
+        if (map && Number.isFinite(lat) && Number.isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180) map.panTo([lat, lng]);
+      });
+    }
     try {
       const response = await fetch(new URL("data/regions.json", assetBase), {signal: AbortSignal.timeout(30000)});
       if (!response.ok) throw new Error("Region data is unavailable (HTTP " + response.status + ").");
       data = await response.json();
       if (data.version !== 1 || !data.regions?.length || !data.policy?.areas?.length || !data.geometries ||
           !Number.isFinite(Date.parse(data.retrievedAt))) throw new Error("Region data is invalid.");
-      root.querySelector("[data-timestamp]").textContent = "Region data retrieved " + new Date(data.retrievedAt).toLocaleString() + ". Updated daily when the source is available.";
-      fields.disabled = false;
-      say("Click your repeater’s location on the map, or enter its coordinates.");
+      if (fields) fields.disabled = false;
+      say(form ? "Click your repeater’s location on the map, or enter its coordinates." : "Click your repeater’s location on the map.");
     } catch (error) {
       say(error.message + " Reload to try again. No commands are available until data loads.");
       return;
@@ -177,7 +178,7 @@
       });
       L.control.layers({}, overlays, {collapsed: true}).addTo(map);
       map.on("click", event => selectPoint(event.latlng.lat, event.latlng.lng));
-      root.querySelector("[data-map-note]").textContent = "Use +/− to zoom. The layers control shows additional boundaries; hidden layers still count when choosing codes.";
+      root.querySelector("[data-map-note]").textContent = "Use +/− to zoom.";
       if (selectedPoint) selectPoint(selectedPoint.lat, selectedPoint.lng);
     } catch (error) {
       root.querySelector("[data-map-note]").textContent = error.message;
